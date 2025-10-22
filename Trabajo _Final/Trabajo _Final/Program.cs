@@ -66,11 +66,11 @@
 
             int Opcion;
 
-            Console.WriteLine("Bienvenido al sistema de gestion del taller");
-            Console.WriteLine("Seleccione un numero para acceder a las siguientes gestiones:");
-            Console.WriteLine("1. Gestion de vehiculos");
-            Console.WriteLine("2. Gestion de clientes");
-            Console.WriteLine("3. Gestion de servicio de mantenimiento");
+            Console.WriteLine("Bienvenido al sistema de gestión del taller");
+            Console.WriteLine("Seleccione un número para acceder a las siguientes gestiones:");
+            Console.WriteLine("1. Gestión de vehículos");
+            Console.WriteLine("2. Gestión de clientes");
+            Console.WriteLine("3. Gestión de servicio de mantenimiento");
             Console.WriteLine("4. Salir del programa");
             Console.WriteLine();
 
@@ -101,12 +101,12 @@
 
             int opcion;
 
-            Console.WriteLine("Ingrese 1 para registrar un nuevo vehiculo");
-            Console.WriteLine("Ingrese 2 para ver la lista de vehiculos registrados");
-            Console.WriteLine("Ingrese 3 para editar la informacion de un vehiculo (bucando por el numero de la placa)");
-            Console.WriteLine("Ingrese 4 para asignar un vehiculo a un cliente");
-            Console.WriteLine("Ingrese 5 para ver los vehiculos de un clientes en especifico");
-            Console.WriteLine("Ingrese 6 para salir de la gestion de vehiculos y volver al menu principal");
+            Console.WriteLine("Ingrese 1 para registrar un nuevo vehículo");
+            Console.WriteLine("Ingrese 2 para ver la lista de vehículos registrados");
+            Console.WriteLine("Ingrese 3 para editar la información de un vehículo (buscando por el número de la placa)");
+            Console.WriteLine("Ingrese 4 para asignar un vehículo a un cliente");
+            Console.WriteLine("Ingrese 5 para ver los vehículos de un clientes en específico");
+            Console.WriteLine("Ingrese 6 para salir de la gestión de vehículos y volver al menú principal");
             Console.WriteLine();
             opcion = Convert.ToInt32(Console.ReadLine());
 
@@ -114,16 +114,16 @@
             {      
                 if (opcion==1)
                 { 
-                  Console.WriteLine("Ingrese la marca del vehiculo:");
+                  Console.WriteLine("Ingrese la marca del vehículo:");
                   vehiculos[vehiculoContador, 0] = Console.ReadLine();
-                  Console.WriteLine("Ingrese el modelo del vehiculo;");
+                  Console.WriteLine("Ingrese el modelo del vehículo;");
                   vehiculos[vehiculoContador, 1] = Console.ReadLine();
-                  Console.WriteLine("Ingrese la placa del vehiculo:");
+                  Console.WriteLine("Ingrese la placa del vehículo:");
                   vehiculos[vehiculoContador, 2] = Console.ReadLine();
-                  Console.WriteLine("Ingrese el año del vehiculo:");
+                  Console.WriteLine("Ingrese el año del vehículo:");
                   vehiculos[vehiculoContador, 3] = Console.ReadLine();
 
-                    Console.WriteLine("Desea registrar otro vehiculo? (si/no)");
+                    Console.WriteLine("¿Desea registrar otro vehículo? (si/no)");
                     string respuesta = Console.ReadLine().ToLower();
 
                     vehiculoCliente[vehiculoContador] = -1; //Inicializar como no asignado
@@ -138,20 +138,20 @@
                 }
                 else if(opcion==2)
                 {
-                    Console.WriteLine("Lista de vehiculos registrados:");
+                    Console.WriteLine("Lista de vehículos registrados:");
                     Console.WriteLine();
                     for (int j=0; j< vehiculoContador; j++)
                     {
-                        string asignado = vehiculoCliente[j] >= 0 ? $"(Asignado al cliente: {clientes[vehiculoCliente[j], 0]}, cedula: {clientes[vehiculoCliente[j], 1]})" : "(Sin asignar";
+                        string asignado = vehiculoCliente[j] >= 0 ? $"(Asignado al cliente: {clientes[vehiculoCliente[j], 0]}, cédula: {clientes[vehiculoCliente[j], 1]})" : "(Sin asignar";
 
-                        Console.WriteLine($"Vehiculo {j + 1}: Marca: {vehiculos[j, 0]}, Modelo: {vehiculos[j, 1]}, Placa: {vehiculos[j, 2]}, año: {vehiculos[j, 3]}");
+                        Console.WriteLine($"Vehículo {j + 1}: Marca: {vehiculos[j, 0]}, Modelo: {vehiculos[j, 1]}, Placa: {vehiculos[j, 2]}, año: {vehiculos[j, 3]}");
 
                         if (vehiculoContador==0)
                         {
-                            Console.WriteLine("No hay vehiculos registrados.");
+                            Console.WriteLine("No hay vehículos registrados.");
                         }
 
-                        Console.WriteLine("Desea ver otra funcion? (si/no)");
+                        Console.WriteLine("¿Desea ver otra función? (si/no)");
                         string respuesta = Console.ReadLine().ToLower();
 
                         if (respuesta != "no")
@@ -162,7 +162,7 @@
                 }
                 else if (opcion == 3)
                 {
-                    Console.WriteLine("Inreoduce la placa del vehiculo que desee editar:");
+                    Console.WriteLine("Introducir la placa del vehículo que desee editar:");
                     string placa=Console.ReadLine().ToLower();
                 }
                 else if (opcion == 4)
@@ -174,7 +174,7 @@
 
                 else if (opcion == 6)
                 {
-                    Console.WriteLine("Saliendo de la gestion de vehiculos y volviendo al menu principal...");
+                    Console.WriteLine("Saliendo de la gestiín de vehículos y volviendo al menú principal...");
                     Console.WriteLine();
                     Main(null);
                     break;
@@ -188,8 +188,8 @@
 
             Console.WriteLine("1. Registrar un nuevo cliente");
             Console.WriteLine("2. Ver lista de todos los clientes");
-            Console.WriteLine("3. Editar informacion de un cliente");
-            Console.WriteLine("4. Salir de gestion de clientes (volver al menu principal)");
+            Console.WriteLine("3. Editar información de un cliente");
+            Console.WriteLine("4. Salir de gestión de clientes (volver al menu principal)");
             opcion = Convert.ToInt32(Console.ReadLine());
 
             while(true)
@@ -198,20 +198,20 @@
                 {
                     if (clienteContador >= 15)
                     {
-                        Console.WriteLine("capacidad maxima de clientes alcanzada.");
+                        Console.WriteLine("Capacidad máxima de clientes alcanzada.");
                         return;
                     }
 
                     Console.Write("Nombre: ");
                     clientes[clienteContador, 0] = Console.ReadLine();
-                    Console.Write("Cedula: ");
+                    Console.Write("Cédula: ");
                     clientes[clienteContador, 1] = Console.ReadLine();
-                    Console.Write("Telefono: ");
+                    Console.Write("Teléfono: ");
                     clientes[clienteContador, 2] = Console.ReadLine();
 
                     clienteContador++;
 
-                    Console.WriteLine("Dese registrar otro cliente? (si/no)");
+                    Console.WriteLine("¿Desea registrar otro cliente? (si/no)");
                     string respuesta = Console.ReadLine().ToLower();
 
                     if (respuesta != "si")
@@ -225,9 +225,9 @@
                     {
                         for (int j = 0; j < clienteContador; j++)
                         {
-                            Console.WriteLine($"Cliente {j + 1}: Nombre: {clientes[j, 0]}, cedula:{clientes[j, 1]}, telefono: {clientes[j, 2]}");
+                            Console.WriteLine($"Cliente {j + 1}: Nombre: {clientes[j, 0]}, cédula:{clientes[j, 1]}, teléfono: {clientes[j, 2]}");
                             Console.WriteLine();
-                            Console.WriteLine("Desea ver otra funcion? (si/no)");
+                            Console.WriteLine("¿Desea ver otra función? (si/no)");
                             string respuesta = Console.ReadLine().ToLower();
 
                             if (respuesta != "no")
@@ -239,12 +239,12 @@
                 }
                 else if (opcion == 3)
                 {
-                    Console.WriteLine("Introduce la cedula del cliente a editar: ");
+                    Console.WriteLine("Introducir la cédula del cliente a editar: ");
                     string cedula = Console.ReadLine();
                 }
                 else if (opcion ==4)
                 {
-                    Console.WriteLine("Saliendo de la gestion de cliente y volviendo al menu principal...");
+                    Console.WriteLine("Saliendo de la gestión de cliente y volviendo al menú principal...");
                     Console.WriteLine();
                     Main(null);
                     break;
@@ -256,10 +256,10 @@
         {
             while(true)
             {
-                Console.WriteLine("1. Registrar servicio de mantenimiento a un vehiculo");
+                Console.WriteLine("1. Registrar servicio de mantenimiento a un vehículo");
                 Console.WriteLine("2. Ver historial de servicios por mantenimiento");
-                Console.WriteLine("3. Ver resumen de servicios de todos los vehiculos");
-                Console.WriteLine("4. Salir de gestion de servicios (Menu principal)");
+                Console.WriteLine("3. Ver resúmen de servicios de todos los vehículos");
+                Console.WriteLine("4. Salir de gesti+on de servicios (Men+u principal)");
                 Console.WriteLine();
             }
 
