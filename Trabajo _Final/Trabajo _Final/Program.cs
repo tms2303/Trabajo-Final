@@ -2,57 +2,6 @@
 {
     internal class Program
     {
-        /* Requisitos técnicos: 
-         El sistema debe implementarse exclusivamente con: 
-         • Condicionales 
-         • Ciclos (while, do while, for) 
-         • Arreglos (unidimensionales y bidimensionales) 
-         • Programación modular (uso de funciones/métodos) 
-         �
-         �
-          📑 Menú Principal: 
-         1. Gestión de vehículos 
-         2. Gestión de clientes 
-         3. Gestión de servicios de mantenimiento 
-         4. Salir del programa 
-         �
-         �
-          🚗 Gestión de Vehículos: 
-         (El taller puede atender hasta 20 vehículos distintos) //acumulador
-         1. Registrar un nuevo vehículo (marca, modelo, placa, año) 
-         2. Ver lista de vehículos registrados 
-         3. Editar información de un vehículo (buscar por número de placa) 
-         4. Asignar vehículo a un cliente 
-         5. Ver vehículos de un cliente específico 
-         6. Salir de Gestión de vehículos (volver al Menú principal) 
-         �
-         �
-          👤 Gestión de Clientes: 
-         (El sistema puede registrar hasta 15 clientes) //acumulador
-         1. Registrar un nuevo cliente (nombre, cédula, teléfono)  //cliente[,]
-         2. Ver lista de todos los clientes for (i) y for(j)
-         3. Editar información de un cliente 
-         4. Salir de Gestión de clientes (volver al Menú principal) 
-         �
-         �
-          🔧 Gestión de Servicios de Mantenimiento: 
-         (Se pueden registrar hasta 5 servicios por vehículo) 
-         1. Registrar servicio de mantenimiento a un vehículo 
-         o Seleccionar vehículo 
-         o Ingresar tipo de servicio (ej: cambio de aceite, alineación, etc.) 
-         o Ingresar fecha y costo 
-         2. Ver historial de servicios por vehículo 
-         3. Ver resumen de servicios de todos los vehículos 
-         4. Salir de Gestión de servicios (volver al Menú principal) 
-         �
-         �
-          📌 Notas: 
-         • Los datos se deben almacenar en arreglos unidimensionales y 
-         bidimensionales, según convenga. 
-         • El programa debe ser modular: cada submenú y función debe estar 
-         separada en métodos bien definidos. 
-         • No se permite el uso de bases de datos ni colecciones avanzadas (List,*/
-
         static string[,] vehiculos = new string[20, 4]; // marca, modelo, placa, año
         static int[] vehiculoCliente = new int[20]; // índice del cliente asignado o -1
         static int vehiculoContador = 0;
@@ -424,52 +373,52 @@
 
         static void RegistrarServicios()
         {
-            Console.WriteLine("Ingrese la placa del vehiculo: ");
-            string placa = Console.ReadLine().ToLower();
-            int indiceVehiculo = BuscarVehiculoPorPlaca(placa);
-
-            if (indiceVehiculo == -1)
-            {
-                Console.WriteLine("vehiculo no encontrado. ");
-                Console.WriteLine();
-                GestionServiciosMantenimiento();
-            }
-
-            if (serviciosContador[indiceVehiculo] >=5)
-            {
-                Console.WriteLine("Capacidad maxima de servicios alcanzada para este vehiculo.");
-                Console.WriteLine();
-                GestionServiciosMantenimiento();
-            }
-
-            Console.WriteLine("¿Que tipo de servicio desea registrar? ");
-            string tipoServicio = Console.ReadLine().ToLower();
-
-            Console.WriteLine("Ingrese la fecha del servicio (dd/mm/aaaa): ");
-            string fechaServicio = Console.ReadLine();
-
-            double costoServicio;
-
             while (true)
             {
+                Console.WriteLine("Ingrese la placa del vehiculo: ");
+                string placa = Console.ReadLine().ToLower();
+                int indiceVehiculo = BuscarVehiculoPorPlaca(placa);
+
+                if (indiceVehiculo == -1)
+                {
+                    Console.WriteLine("vehiculo no encontrado. ");
+                    Console.WriteLine();
+                    GestionServiciosMantenimiento();
+                }
+
+                if (serviciosContador[indiceVehiculo] >= 5)
+                {
+                    Console.WriteLine("Capacidad maxima de servicios alcanzada para este vehiculo.");
+                    Console.WriteLine();
+                    GestionServiciosMantenimiento();
+                }
+
+                Console.WriteLine("¿Que tipo de servicio desea registrar? ");
+                string tipoServicio = Console.ReadLine().ToLower();
+
+                Console.WriteLine("Ingrese la fecha del servicio (dd/mm/aaaa): ");
+                string fechaServicio = Console.ReadLine();
+
+                double costoServicio = 0;
+
                 Console.WriteLine("Costo del servicio: ");
                 string costoInput = Console.ReadLine().ToLower();
-            }
 
-            int servicioIndice = serviciosContador[indiceVehiculo];
-            serviciosTipo[indiceVehiculo, servicioIndice] = tipoServicio;
-            serviciosFecha[indiceVehiculo, servicioIndice] = fechaServicio;
-            serviciosCosto[indiceVehiculo, servicioIndice] = costoServicio;
-            serviciosContador[indiceVehiculo]++;
+                int servicioIndice = serviciosContador[indiceVehiculo];
+                serviciosTipo[indiceVehiculo, servicioIndice] = tipoServicio;
+                serviciosFecha[indiceVehiculo, servicioIndice] = fechaServicio;
+                serviciosCosto[indiceVehiculo, servicioIndice] = costoServicio;
+                serviciosContador[indiceVehiculo]++;
 
-            Console.WriteLine("servicio registrado");
-            Console.WriteLine();
-            Console.WriteLine("Desea registrar otro servicio? (si/no)");
-            string respuesta = Console.ReadLine().ToLower();
+                Console.WriteLine("servicio registrado");
+                Console.WriteLine();
+                Console.WriteLine("Desea registrar otro servicio? (si/no)");
+                string respuesta = Console.ReadLine().ToLower();
 
-            if (respuesta !="si")
-            {
-                RegistrarServicios();
+                if (respuesta != "si")
+                {
+                    RegistrarServicios();
+                }
             }
         }
 
@@ -500,6 +449,13 @@
             for (int i=0; i<contador; i++)
             {
                 Console.WriteLine($"servicio {i,1}: tipo: {serviciosTipo[indiceVehiculo, i]}, fecha: {serviciosFecha[indiceVehiculo,i]}, costo: {serviciosCosto[indiceVehiculo,i]}");
+                Console.WriteLine();
+                Console.WriteLine("Desea ver otra funcion? (si/no)");
+                string respuesta = Console.ReadLine().ToLower();
+                if (respuesta != "si")
+                {
+                    GestionServiciosMantenimiento();
+                }
             }
         }
 
@@ -513,7 +469,6 @@
 
                 if (contador==0)
                 {
-                    continue;
 
                     hayServicios = true;
 
