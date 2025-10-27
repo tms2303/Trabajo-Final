@@ -58,12 +58,13 @@
 
             int opcion;
 
-            Console.WriteLine("Ingrese 1 para registrar un nuevo vehiculo");
-            Console.WriteLine("Ingrese 2 para ver la lista de vehiculos registrados");
-            Console.WriteLine("Ingrese 3 para editar la informacion de un vehiculo (bucando por el numero de la placa)");
-            Console.WriteLine("Ingrese 4 para asignar un vehiculo a un cliente");
-            Console.WriteLine("Ingrese 5 para ver los vehiculos de un clientes en especifico");
-            Console.WriteLine("Ingrese 6 para salir de la gestion de vehiculos y volver al menu principal");
+            Console.WriteLine("1. para registrar un nuevo vehiculo");
+            Console.WriteLine("2. para ver la lista de vehiculos registrados");
+            Console.WriteLine("3. para editar la informacion de un vehiculo (bucando por el numero de la placa)");
+            Console.WriteLine("4. para asignar un vehiculo a un cliente");
+            Console.WriteLine("5. para ver los vehiculos de un clientes en especifico");
+            Console.WriteLine("6. para salir de la gestion de vehiculos y volver al menu principal");
+            Console.WriteLine();
             opcion = Convert.ToInt32(Console.ReadLine());
 
             while(true) 
@@ -237,6 +238,7 @@
             Console.WriteLine("2. Ver lista de todos los clientes");
             Console.WriteLine("3. Editar informacion de un cliente");
             Console.WriteLine("4. Salir de gestion de clientes (volver al menu principal)");
+            Console.WriteLine();
             opcion = Convert.ToInt32(Console.ReadLine());
 
             while(true)
@@ -339,11 +341,8 @@
             while(true)
             {
                 Console.WriteLine("1. Registrar servicio de mantenimiento a un vehiculo");
-                Console.WriteLine();
                 Console.WriteLine("2. Ver historial de servicios por mantenimiento");
-                Console.WriteLine();
                 Console.WriteLine("3. Ver resumen de servicios de todos los vehiculos");
-                Console.WriteLine();
                 Console.WriteLine("4. Salir de gestion de servicios (Menu principal)");
                 Console.WriteLine();
                 int opcion = Convert.ToInt32(Console.ReadLine());
@@ -399,15 +398,13 @@
                 Console.WriteLine("Ingrese la fecha del servicio (dd/mm/aaaa): ");
                 string fechaServicio = Console.ReadLine();
 
-                double costoServicio = 0;
-
                 Console.WriteLine("Costo del servicio: ");
-                string costoInput = Console.ReadLine().ToLower();
+                double costoInput = Convert.ToDouble(Console.ReadLine());
 
                 int servicioIndice = serviciosContador[indiceVehiculo];
                 serviciosTipo[indiceVehiculo, servicioIndice] = tipoServicio;
                 serviciosFecha[indiceVehiculo, servicioIndice] = fechaServicio;
-                serviciosCosto[indiceVehiculo, servicioIndice] = costoServicio;
+                serviciosCosto[indiceVehiculo, servicioIndice] = costoInput;
                 serviciosContador[indiceVehiculo]++;
 
                 Console.WriteLine("servicio registrado");
@@ -417,7 +414,7 @@
 
                 if (respuesta != "si")
                 {
-                    RegistrarServicios();
+                    GestionServiciosMantenimiento();
                 }
             }
         }
@@ -452,6 +449,7 @@
                 Console.WriteLine();
                 Console.WriteLine("Desea ver otra funcion? (si/no)");
                 string respuesta = Console.ReadLine().ToLower();
+
                 if (respuesta != "si")
                 {
                     GestionServiciosMantenimiento();
@@ -463,13 +461,12 @@
         {
             bool hayServicios = false;
 
-            for (int i=0; i<vehiculoContador; i++)
+            for (int i=0; i<=vehiculoContador; i++)
             {
                 int contador = serviciosContador[i];
 
-                if (contador==0)
+                if (contador > 0)
                 {
-
                     hayServicios = true;
 
                     double total = 0;
@@ -478,8 +475,9 @@
 
                     for (int j=0; j<contador; j++)
                     {
+                        double costo = serviciosCosto[i, j];
                         Console.WriteLine($"Servicio {j+1}: {serviciosTipo[i,j]} | fecha {serviciosFecha[i,j]} | costo: {serviciosCosto[i,j]}");
-                        total += serviciosCosto[i, j];
+                        total += costo;
                     }
 
                     Console.WriteLine($"Costo total de servicios: {total}");
