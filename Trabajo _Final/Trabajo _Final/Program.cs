@@ -52,7 +52,7 @@
                 else if (Opcion == 4)
                 {
                     Console.WriteLine("Saliendo del programa... Gracias por usar el sistema.");
-                    break;
+                    Environment.Exit(0);
                 }
             }
         }
@@ -96,6 +96,7 @@
                     if (respuesta != "si")
                     {
                         GestionVehiculos();
+                        break;
                     }
 
                 }
@@ -123,6 +124,7 @@
                     if (respuesta != "no")
                     {
                         GestionVehiculos();
+                        break;
                     }
 
                 }
@@ -157,13 +159,14 @@
 
                         Console.WriteLine("Vehículo actualizado con éxito.");
                         Console.WriteLine();
-                        Console.WriteLine("¿Desea ver otra función? (si/no)");
+                        Console.WriteLine("¿Desea editar la información de otro vehículo? (si/no)");
                         Console.WriteLine();
                         string respuesta = Console.ReadLine().ToLower();
 
-                        if (respuesta != "no")
+                        if (respuesta != "si")
                         {
                             GestionVehiculos();
+                            break;
                         }
                     }
 
@@ -202,6 +205,7 @@
                     if (respuesta != "si")
                     {
                         GestionVehiculos();
+                        break;
                     }
 
                 }
@@ -239,6 +243,7 @@
                     if (respuesta != "si")
                     {
                         GestionVehiculos();
+                        break;
                     }
 
                 }
@@ -291,6 +296,7 @@
                     if (respuesta != "si")
                     {
                         GestionClientes();
+                        break;
                     }
                 }
                 else if (opcion == 2)
@@ -309,6 +315,7 @@
                         if (respuesta != "no")
                         {
                             GestionClientes();
+                            break;
                         }
                     }
                 }
@@ -349,6 +356,7 @@
                         if (respuesta != "no")
                         {
                             GestionClientes();
+                            break;
                         }
                     }
                 }
@@ -404,7 +412,7 @@
         {
             while (true)
             {
-                Console.WriteLine("Ingrese la placa del vehículo: ");
+                Console.WriteLine("Ingrese la placa del vehículo");
                 string placa = Console.ReadLine().ToLower();
                 int indiceVehiculo = BuscarVehiculoPorPlaca(placa);
 
@@ -445,7 +453,9 @@
                 if (respuesta != "si")
                 {
                     GestionServiciosMantenimiento();
+                    break;
                 }
+
             }
         }
         /* -------------------------------------------------------------------------- */
@@ -453,7 +463,7 @@
         /* -------------------------------------------------------------------------- */
         static void VerHistorialPorVehiculo()
         {
-            Console.WriteLine("Ingrese la placa del vehículo: ");
+            Console.WriteLine("Ingrese la placa del vehículo");
             string placa = Console.ReadLine().ToLower();
             int indiceVehiculo = BuscarVehiculoPorPlaca(placa);
 
